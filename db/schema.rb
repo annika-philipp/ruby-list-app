@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2018_07_06_092413) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "items", force: :cascade do |t|
     t.integer "type"
     t.string "name"
@@ -24,8 +27,8 @@ ActiveRecord::Schema.define(version: 2018_07_06_092413) do
   end
 
   create_table "list_items", force: :cascade do |t|
-    t.integer "list_id"
-    t.integer "item_id"
+    t.bigint "list_id"
+    t.bigint "item_id"
     t.text "description"
     t.integer "position"
     t.datetime "created_at", null: false
@@ -43,4 +46,6 @@ ActiveRecord::Schema.define(version: 2018_07_06_092413) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "list_items", "items"
+  add_foreign_key "list_items", "lists"
 end
