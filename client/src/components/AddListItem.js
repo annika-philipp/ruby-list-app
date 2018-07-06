@@ -5,7 +5,8 @@ class NewListForm extends Component {
     super(props)
     this.state = {...props.list} || {
       title: '',
-      excerpt: ''
+      excerpt: '',
+      description: ''
     }
   }
 
@@ -25,15 +26,16 @@ class NewListForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { title, excerpt } = this.state
-    this.props.addNewListItem(title, excerpt)
+    const { title, excerpt, description } = this.state
+    this.props.addNewListItem(title, excerpt, description)
   }
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <input name="title" type="text" placeholder="Title..." onChange={this.handleChange} required />
         <input name="excerpt" type="text" placeholder="Excerpt..." onChange={this.handleChange} required />
-        <button>Add List</button>
+        <input name="description" type="text" placeholder="Description..." onChange={this.handleChange} required />
+        <button>Add Item</button>
       </form>
     )
   }

@@ -34,8 +34,8 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
-  addNewListItem(title, excerpt) {
-    axios.post('/api/v1/lists', { list: {title, excerpt} })
+  addNewListItem(title, excerpt, description) {
+    axios.post('/api/v1/lists', { list: {title, excerpt, description} })
     .then(response => {
       const newLists = [ ...this.state.lists, response.data ]
       this.setState({
@@ -57,14 +57,12 @@ class App extends Component {
   }
 
   editingItem(id) {
-    console.log("I got clicked ", id)
     this.setState({
       editingListId: id
     })
   }
   
-  editListItem(id, title, excerpt) {
-    console.log("i got triggered")
+  editListItem(id, title, excerpt, description) {
     axios.put( '/api/v1/lists/' + id, {
       list: {
         title, 
@@ -72,9 +70,8 @@ class App extends Component {
       }
     })
     .then(response => {
-      console.log("Edit response, ", response)
       const lists = this.state.lists
-      lists[id-1] = {id, title, excerpt}
+      lists[id-1] = {id, title, excerpt, description}
       this.setState(() => ({
         lists,
         editingListId: null

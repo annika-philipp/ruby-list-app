@@ -5,6 +5,7 @@ const List = ({ list, deleteItem, editingItem }) =>
 <div className="single-list" key={list.id}>
   <h4>{list.title}</h4>
   <p>{list.excerpt}</p>
+  <p>{list.description}</p>
   <button onClick={() => deleteItem(list.id)}>Delete</button>
   <button onClick={() => editingItem(list.id)}>Edit</button>
   <hr/>
