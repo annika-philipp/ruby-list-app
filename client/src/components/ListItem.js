@@ -20,7 +20,7 @@ class List extends Component {
 
   hideDescription() {
     this.setState({
-      detailsVisible: false
+      detailsVisible: !this.state
     })
   }
 
