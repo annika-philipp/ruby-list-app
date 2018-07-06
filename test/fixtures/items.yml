@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 1
+  name: MyString
+  excerpt: MyText
+  description: MyText
+  url: MyString
+  upvotes: 1
+
+two:
+  type: 1
+  name: MyString
+  excerpt: MyText
+  description: MyText
+  url: MyString
+  upvotes: 1
