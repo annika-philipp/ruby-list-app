@@ -3,20 +3,13 @@ import React, { Component } from 'react';
 class NewListForm extends Component {
   constructor(props){
     super(props)
-    this.state = {...props.list} || {
+    this.state = {
       title: '',
       excerpt: '',
       description: ''
     }
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
-    if (this.state !== nextProps.list) {
-      this.setState({...nextProps.list})
-    }
-  }
-
-   
   handleChange = (e) => {
     e.preventDefault()
     this.setState({
@@ -28,7 +21,14 @@ class NewListForm extends Component {
     e.preventDefault()
     const { title, excerpt, description } = this.state
     this.props.addNewListItem(title, excerpt, description)
+    // shouldn't the this.setState clear state again (so that the placeholders show again?)
+    this.setState({
+      title: '',
+      excerpt: '',
+      description: ''
+    })
   }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
