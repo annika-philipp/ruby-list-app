@@ -7,7 +7,8 @@ class List extends Component {
     super(props)
     this.state = {
       activeListItem: '',
-      detailsVisible: false
+      detailsVisible: false,
+      
     }
     this.showDescription = this.showDescription.bind(this)
     this.hideDescription = this.hideDescription.bind(this)
