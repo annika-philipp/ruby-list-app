@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EditForm from './EditForm'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons'
 
@@ -6,26 +7,19 @@ class List extends Component {
   constructor(props){
     super(props)
     this.state = {
-      activeListItem: '',
-      detailsVisible: false,
-      
+      id: this.props.list.id,
+      editVisible: false,
     }
-    this.showDescription = this.showDescription.bind(this)
-    this.hideDescription = this.hideDescription.bind(this)
+    this.toggleEdit = this.toggleEdit.bind(this)
   }
 
-  showDescription(listItem) {
+
+  toggleEdit() {
     this.setState({
-      activeListItem: listItem,
-      detailsVisible: true
+      editVisible: !this.state.editVisible
     })
   }
 
-  hideDescription() {
-    this.setState({
-      detailsVisible: !this.state
-    })
-  }
 
   render() {
     const list = this.props.list
@@ -38,25 +32,18 @@ class List extends Component {
             </div>
             <div className="col-4" id="buttons">
               <button className="btn-outline-dark btn-sm" onClick={() => this.props.deleteItem(list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
-              <button className="btn-outline-dark btn-sm" onClick={() => this.props.editingItem(list.id)}><FontAwesomeIcon icon={faEdit} /></button>
+              <button className="btn-outline-dark btn-sm" onClick={this.toggleEdit}><FontAwesomeIcon icon={faEdit} /></button>
             </div>
           </div>
         </div>
         <div className="container">
           <div className="row">
             <div className="col-12">  
-              <p>{list.excerpt}</p>
-              <br/>
-            {this.state.detailsVisible 
-              ? <div>
-                  <p>{list.description}</p>
-                  <button className="btn-outline-dark" onClick={() => this.hideDescription(list.id)}>Hide Full Text</button>  
-                </div>
-              : <button className="btn-outline-dark" onClick={() => this.showDescription(list.id)}>Show Full Text</button>
-             }
+              <p>{list.description}</p>
             </div>
           </div>
         </div>
+        {this.state.editVisible && <EditForm hideVisible={this.toggleEdit} list={this.props.list} editListItem={this.props.editListItem}/>}
       </div>  
     )
   }

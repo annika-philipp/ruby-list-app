@@ -6,8 +6,7 @@ class EditListForm extends Component {
     this.state = {
       id: this.props.list.id,
       title: this.props.list.title,
-      excerpt: this.props.list.excerpt,
-      description: this.props.list.description
+      description: this.props.list.description,
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,18 +20,26 @@ class EditListForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { id, title, excerpt, description } = this.state
-    this.props.editListItem(id, title, excerpt, description)
+    const { id, title, description } = this.state
+    this.props.editListItem(id, title, description)
+    this.props.hideVisible()
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input name="title" type="text" placeholder="Title..." value={this.state.title} onChange={this.handleChange} />
-        <input name="excerpt" type="text" placeholder="Excerpt..." value={this.state.excerpt} onChange={this.handleChange} />
-        <input name="description" type="text" placeholder="Description..." value={this.state.description} onChange={this.handleChange} />
-        <button>Update List</button>
-      </form>
+      <div className="editForm">
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>Title</label>
+            <input className="form-control" name="title" type="text" placeholder="Title..." onChange={this.handleChange} />
+          </div> 
+          <div>
+            <label>Full description</label>  
+            <textarea className="form-control" rows="10" name="description" type="text" placeholder="Full description..." onChange={this.handleChange} />
+          </div>
+          <button className="btn-outline-dark btn-sm">Submit</button>
+        </form>
+      </div>
     )
   }
 
