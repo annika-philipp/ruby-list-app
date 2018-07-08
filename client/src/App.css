@@ -47,6 +47,10 @@
   align-self: center
 }
 
+.addForm {
+  margin-bottom: 10px
+}
+
 #listItem {
   border: 0.1em solid lightgrey;
   padding-top: 10px;
