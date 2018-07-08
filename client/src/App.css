@@ -14,7 +14,8 @@
 
 #header-list {
   display: flex;
-  flex-direction: row
+  flex-direction: row;
+  padding-bottom: 10px
 }
 
 #buttons {
