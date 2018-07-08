@@ -43,15 +43,24 @@ class NewListForm extends Component {
     return (
       <div>
         {!this.state.addingItem
-        ? <div>
-            <button onClick={this.addingItem.bind(this)}><FontAwesomeIcon icon={faPlus} /></button>
+        ? <div className="addItem">
             <p>Add new Item</p>
+            <button className="btn-outline-dark btn-sm" onClick={this.addingItem.bind(this)}><FontAwesomeIcon icon={faPlus} /></button>
           </div>
         : <form onSubmit={this.handleSubmit}>
-            <input name="title" type="text" placeholder="Title..." onChange={this.handleChange} required />
-            <input name="excerpt" type="text" placeholder="Excerpt..." onChange={this.handleChange} required />
-            <input name="description" type="text" placeholder="Description..." onChange={this.handleChange} required />
-            <button>Submit</button>
+            <div className="form-group">
+              <label>Title</label>
+              <input className="form-control" name="title" type="text" placeholder="Title..." onChange={this.handleChange} />
+            </div>
+            <div className="form-group">
+              <label>Excerpt</label>  
+              <input className="form-control" name="excerpt" type="text" placeholder="Excerpt..." onChange={this.handleChange} />
+            </div>  
+            <div>
+              <label>Full description</label>  
+              <textarea className="form-control" rows="10" name="description" type="text" placeholder="Full description..." onChange={this.handleChange} />
+            </div>
+            <button className="btn-outline-dark btn-sm">Submit</button>
           </form>}
       </div>
     )
