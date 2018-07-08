@@ -7,7 +7,6 @@ class NewListForm extends Component {
     super(props)
     this.state = {
       title: '',
-      excerpt: '',
       description: '',
       addingItem: false
     }
@@ -28,12 +27,10 @@ class NewListForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    const { title, excerpt, description } = this.state
-    this.props.addNewListItem(title, excerpt, description)
-    // shouldn't the this.setState clear state again (so that the placeholders show again?)
+    const { title, description } = this.state
+    this.props.addNewListItem(title, description)
     this.setState({
       title: '',
-      excerpt: '',
       description: '',
       addingItem: false
     })
@@ -52,11 +49,7 @@ class NewListForm extends Component {
               <div className="form-group">
                 <label>Title</label>
                 <input className="form-control" name="title" type="text" placeholder="Title..." onChange={this.handleChange} />
-              </div>
-              <div className="form-group">
-                <label>Excerpt</label>  
-                <input className="form-control" name="excerpt" type="text" placeholder="Excerpt..." onChange={this.handleChange} />
-              </div>  
+              </div> 
               <div>
                 <label>Full description</label>  
                 <textarea className="form-control" rows="10" name="description" type="text" placeholder="Full description..." onChange={this.handleChange} />

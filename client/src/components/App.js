@@ -3,7 +3,6 @@ import '../App.css';
 import axios from 'axios';
 import ListItem from './ListItem';
 import AddListItem from './AddListItem';
-import EditForm from './EditForm';
 
 
 class App extends Component {
@@ -11,18 +10,17 @@ class App extends Component {
     super(props)
     this.state = {
       lists: [],
-      editingListId: null
     }
     this.fetchLists = this.fetchLists.bind(this)
     this.addNewListItem = this.addNewListItem.bind(this)
     this.deleteItem = this.deleteItem.bind(this)
-    this.editingItem = this.editingItem.bind(this)
     this.editListItem = this.editListItem.bind(this)
   }
   
   componentDidMount() {
     this.fetchLists()
   }
+
 
   fetchLists() {
     axios.get('api/v1/lists')
@@ -34,8 +32,8 @@ class App extends Component {
       .catch(error => console.log(error))
   }
 
-  addNewListItem(title, excerpt, description) {
-    axios.post('/api/v1/lists', { list: {title, excerpt, description} })
+  addNewListItem(title, description) {
+    axios.post('/api/v1/lists', { list: {title, description} })
     .then(response => {
       const newLists = [ ...this.state.lists, response.data ]
       this.setState({
@@ -56,26 +54,23 @@ class App extends Component {
     .catch(error => console.log(error))
   }
 
-  editingItem(id) {
-    this.setState({
-      editingListId: id
-    })
-  }
   
-  editListItem(id, title, excerpt, description) {
+  editListItem(id, title, description) {
+    console.log("editing")
     axios.put( '/api/v1/lists/' + id, {
       list: {
-        title, 
-        excerpt
+        title,
+        description
       }
     })
     .then(response => {
       const lists = this.state.lists
-      lists[id-1] = {id, title, excerpt, description}
+      lists[id-1] = {id, title, description}
+      console.log("line above ", lists[id-1])
       this.setState(() => ({
-        lists,
-        editingListId: null
+        lists
       }))
+      console.log("new list ", this.state.lists)
     })
     .catch(error => console.log(error))
   }
@@ -103,20 +98,11 @@ class App extends Component {
           <div className="container">
             <div className="row justify-content-md-center">
               {lists.map( list => {
-                if (this.state.editingListId === list.id) {
-                  return <EditForm 
-                          list={list} 
-                          key={list.id} 
-                          editListItem={this.editListItem} />
-                } else {
                   return <ListItem 
                           list={list} 
                           key={list.id} 
                           deleteItem={this.deleteItem} 
-                          editingItem={this.editingItem}
-                          showDescription={this.showDescription}
-                          hideDescription={this.hideDescription} />
-                }
+                          editListItem={this.editListItem} />
                 })}    
             </div>
           </div>
