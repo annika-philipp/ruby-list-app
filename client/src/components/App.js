@@ -84,35 +84,39 @@ class App extends Component {
   render() {
     const lists = this.state.lists
     return (
-      <div className="container">
+      <div>
         
-        <div className="row text-center" id="header">
-          <div className="title">Lists Galore!</div>
+        <div className="jumbotron" id="header">
+          <h1>Lists Galore!</h1>
         </div>
 
-        <div className="row text-center">
-          <div className="col-12">
-            <AddListItem 
-                addNewListItem={this.addNewListItem} />
-          </div>
+        <div className="container">
 
-          <div>
-            {lists.map( list => {
-              if (this.state.editingListId === list.id) {
-                return <EditForm 
-                        list={list} 
-                        key={list.id} 
-                        editListItem={this.editListItem} />
-              } else {
-                return <ListItem 
-                        list={list} 
-                        key={list.id} 
-                        deleteItem={this.deleteItem} 
-                        editingItem={this.editingItem}
-                        showDescription={this.showDescription}
-                        hideDescription={this.hideDescription} />
-              }
-              })}    
+          <div className="row text-center">
+            <div className="col-12">
+              <AddListItem 
+                  addNewListItem={this.addNewListItem} />
+            </div>
+
+            <div>
+              {lists.map( list => {
+                if (this.state.editingListId === list.id) {
+                  return <EditForm 
+                          list={list} 
+                          key={list.id} 
+                          editListItem={this.editListItem} />
+                } else {
+                  return <ListItem 
+                          list={list} 
+                          key={list.id} 
+                          deleteItem={this.deleteItem} 
+                          editingItem={this.editingItem}
+                          showDescription={this.showDescription}
+                          hideDescription={this.hideDescription} />
+                }
+                })}    
+            </div>
+
           </div>
 
         </div>
