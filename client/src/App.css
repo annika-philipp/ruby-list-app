@@ -8,9 +8,22 @@
   height: 150px;
   padding: 20px;
   color: white;
-  text-align: center
-
+  text-align: center;
+  padding-top: 50px
 }
+
+#header-list {
+  display: flex;
+  flex-direction: row
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  flex-flow: row-reverse
+}
+
+/* needs to add mediaquery for header */
 
 .title {
   font-size: 2em;
@@ -19,11 +32,13 @@
 .addItem {
   display: flex;
   flex-flow: row;
-  align-items: baseline;
-  justify-content: center
+  justify-content: center;
+  /* align-items: center */
 }
 
 #listItem {
-  border: 0.1em solid lightgrey
+  border: 0.1em solid lightgrey;
+  padding-top: 10px;
+  padding-bottom: 10px
 }
 

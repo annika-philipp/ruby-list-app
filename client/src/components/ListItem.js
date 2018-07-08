@@ -29,21 +29,34 @@ class List extends Component {
   render() {
     const list = this.props.list
     return(
-      <div key={list.id} id="listItem">
-        <h4>{list.title}</h4>
-        <p>{list.excerpt}</p>
-        {!this.state.detailsVisible 
-          ? <button onClick={() => this.showDescription(list.id)}>Show Full Text</button>
-          :
-          <div>
-            <p>{list.description}</p>
-            <button onClick={() => this.hideDescription(list.id)}>Hide Full Text</button>  
-          </div>}
-        <br/>
-        <button onClick={() => this.props.deleteItem(list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
-        <button onClick={() => this.props.editingItem(list.id)}><FontAwesomeIcon icon={faEdit} /></button>
-        <hr/>
-      </div>
+      <div className="col-lg-8 col-12" key={list.id} id="listItem">
+        <div className="container">
+          <div className="row" id="header-list">
+            <div className="col-8">
+              <h4>{list.title}</h4>
+            </div>
+            <div className="col-4" id="buttons">
+              <button className="btn-outline-dark btn-sm" onClick={() => this.props.deleteItem(list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
+              <button className="btn-outline-dark btn-sm" onClick={() => this.props.editingItem(list.id)}><FontAwesomeIcon icon={faEdit} /></button>
+            </div>
+          </div>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-12">  
+              <p>{list.excerpt}</p>
+              <br/>
+            {this.state.detailsVisible 
+              ? <div>
+                  <p>{list.description}</p>
+                  <button className="btn-outline-dark" onClick={() => this.hideDescription(list.id)}>Hide Full Text</button>  
+                </div>
+              : <button className="btn-outline-dark" onClick={() => this.showDescription(list.id)}>Show Full Text</button>
+             }
+            </div>
+          </div>
+        </div>
+      </div>  
     )
   }
 }

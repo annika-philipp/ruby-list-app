@@ -90,15 +90,18 @@ class App extends Component {
           <h1>Lists Galore!</h1>
         </div>
 
-        <div className="container">
+        <div className="container" id="main">
 
-          <div className="row text-center">
-            <div className="col-12">
-              <AddListItem 
-                  addNewListItem={this.addNewListItem} />
+          <div className="container">
+            <div className="row text-center">
+              <div className="col-12">
+                <AddListItem addNewListItem={this.addNewListItem} />
+              </div>
             </div>
-
-            <div>
+          </div>
+          
+          <div className="container">
+            <div className="row justify-content-md-center">
               {lists.map( list => {
                 if (this.state.editingListId === list.id) {
                   return <EditForm 
@@ -116,7 +119,6 @@ class App extends Component {
                 }
                 })}    
             </div>
-
           </div>
 
         </div>

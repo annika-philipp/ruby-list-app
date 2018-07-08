@@ -43,7 +43,7 @@ class NewListForm extends Component {
     return (
       <div>
         {!this.state.addingItem
-        ? <div className="addItem">
+        ? <div>
             <button onClick={this.addingItem.bind(this)}><FontAwesomeIcon icon={faPlus} /></button>
             <p>Add new Item</p>
           </div>
