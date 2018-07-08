@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faEdit } from '@fortawesome/free-solid-svg-icons'
 
 class List extends Component {
   constructor(props){
@@ -27,7 +29,7 @@ class List extends Component {
   render() {
     const list = this.props.list
     return(
-      <div className="single-list" key={list.id}>
+      <div key={list.id} id="listItem">
         <h4>{list.title}</h4>
         <p>{list.excerpt}</p>
         {!this.state.detailsVisible 
@@ -38,8 +40,8 @@ class List extends Component {
             <button onClick={() => this.hideDescription(list.id)}>Hide Full Text</button>  
           </div>}
         <br/>
-        <button onClick={() => this.props.deleteItem(list.id)}>Delete</button>
-        <button onClick={() => this.props.editingItem(list.id)}>Edit</button>
+        <button onClick={() => this.props.deleteItem(list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
+        <button onClick={() => this.props.editingItem(list.id)}><FontAwesomeIcon icon={faEdit} /></button>
         <hr/>
       </div>
     )

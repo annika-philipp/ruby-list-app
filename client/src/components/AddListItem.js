@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 class NewListForm extends Component {
   constructor(props){
@@ -6,8 +8,15 @@ class NewListForm extends Component {
     this.state = {
       title: '',
       excerpt: '',
-      description: ''
+      description: '',
+      addingItem: false
     }
+  }
+
+  addingItem() {
+    this.setState({
+      addingItem: true
+    })
   }
 
   handleChange = (e) => {
@@ -25,18 +34,26 @@ class NewListForm extends Component {
     this.setState({
       title: '',
       excerpt: '',
-      description: ''
+      description: '',
+      addingItem: false
     })
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input name="title" type="text" placeholder="Title..." onChange={this.handleChange} required />
-        <input name="excerpt" type="text" placeholder="Excerpt..." onChange={this.handleChange} required />
-        <input name="description" type="text" placeholder="Description..." onChange={this.handleChange} required />
-        <button>Add Item</button>
-      </form>
+      <div>
+        {!this.state.addingItem
+        ? <div className="addItem">
+            <button onClick={this.addingItem.bind(this)}><FontAwesomeIcon icon={faPlus} /></button>
+            <p>Add new Item</p>
+          </div>
+        : <form onSubmit={this.handleSubmit}>
+            <input name="title" type="text" placeholder="Title..." onChange={this.handleChange} required />
+            <input name="excerpt" type="text" placeholder="Excerpt..." onChange={this.handleChange} required />
+            <input name="description" type="text" placeholder="Description..." onChange={this.handleChange} required />
+            <button>Submit</button>
+          </form>}
+      </div>
     )
   }
 }
