@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 class NewListForm extends Component {
   constructor(props){
@@ -10,11 +10,12 @@ class NewListForm extends Component {
       description: '',
       addingItem: false
     }
+    this.toggleAdd = this.toggleAdd.bind(this)
   }
 
-  addingItem() {
+  toggleAdd() {
     this.setState({
-      addingItem: true
+      addingItem: !this.state.addingItem
     })
   }
 
@@ -42,21 +43,29 @@ class NewListForm extends Component {
         {!this.state.addingItem
         ? <div className="addItem">
             <p>Add new Item</p>
-            <button className="btn-outline-dark btn-sm" onClick={this.addingItem.bind(this)}><FontAwesomeIcon icon={faPlus} /></button>
+            <button className="btn-outline-dark btn-sm" onClick={this.toggleAdd}><FontAwesomeIcon icon={faPlus} /></button>
           </div>
-        : <div className="addForm">
-            <form onSubmit={this.handleSubmit}>
-              <div className="form-group">
-                <label>Title</label>
-                <input className="form-control" name="title" type="text" placeholder="Title..." onChange={this.handleChange} />
-              </div> 
-              <div>
-                <label>Full description</label>  
-                <textarea className="form-control" rows="10" name="description" type="text" placeholder="Full description..." onChange={this.handleChange} />
+          : 
+            <div>
+              <div className="container">
+                <div className="row" id="buttons">
+                  <button className="btn-outline-dark btn-sm" onClick={this.toggleAdd}><FontAwesomeIcon icon={faTimes} /></button>
+                </div>
               </div>
-              <button className="btn-outline-dark btn-sm">Submit</button>
-            </form>
-          </div>}
+              <div className="addForm">
+                <form onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <label>Title</label>
+                    <input className="form-control" name="title" type="text" placeholder="Title..." onChange={this.handleChange} />
+                  </div> 
+                  <div>
+                    <label>Full description</label>  
+                    <textarea className="form-control" rows="10" name="description" type="text" placeholder="Full description..." onChange={this.handleChange} />
+                  </div>
+                  <button className="btn-outline-dark btn-sm">Submit</button>
+                </form>
+              </div>
+            </div>}
       </div>
     )
   }
