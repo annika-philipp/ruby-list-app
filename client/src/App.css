@@ -24,22 +24,19 @@
   flex-flow: row-reverse
 }
 
-/* needs to add mediaquery for header */
+/* need to add mediaquery for header */
 
 .title {
   font-size: 2em;
 }
 
-.move {
-  margin-right: -15px
-}
 
 .addItem {
   display: flex;
   flex-flow: row;
-  justify-content: end;
   margin-right: -15px;
-  margin-bottom: 10px
+  margin-bottom: 10px;
+  justify-content: flex-end
 }
 
 .addItem p {

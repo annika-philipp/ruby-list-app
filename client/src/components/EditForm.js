@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 class EditListForm extends Component {
   constructor(props){
@@ -6,7 +8,7 @@ class EditListForm extends Component {
     this.state = {
       id: this.props.list.id,
       title: this.props.list.title,
-      description: this.props.list.description,
+      description: this.props.list.description
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -27,18 +29,26 @@ class EditListForm extends Component {
 
   render() {
     return (
-      <div className="editForm">
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label>Title</label>
-            <input className="form-control" name="title" type="text" placeholder="Title..." onChange={this.handleChange} />
-          </div> 
-          <div>
-            <label>Full description</label>  
-            <textarea className="form-control" rows="10" name="description" type="text" placeholder="Full description..." onChange={this.handleChange} />
+      <div>
+        <div className="container">
+          <div className="row" id="buttons">
+            <button className="btn-outline-dark btn-sm" onClick={() => this.props.deleteItem(this.props.list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
+            <button className="btn-outline-dark btn-sm" onClick={this.props.hideVisible}><FontAwesomeIcon icon={faTimes} /></button>
           </div>
-          <button className="btn-outline-dark btn-sm">Submit</button>
-        </form>
+        </div>
+        <div className="editForm">
+          <form onSubmit={this.handleSubmit}>
+            <div className="form-group">
+              <label>Title</label>
+              <input className="form-control" name="title" type="text" value={this.state.title} onChange={this.handleChange} />
+            </div> 
+            <div>
+              <label>Full description</label>  
+              <textarea className="form-control" rows="10" name="description" type="text" value={this.state.description} onChange={this.handleChange} />
+            </div>
+            <button className="btn-outline-dark btn-sm">Submit</button>
+          </form>
+        </div>
       </div>
     )
   }
