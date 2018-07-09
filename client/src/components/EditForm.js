@@ -32,8 +32,12 @@ class EditListForm extends Component {
       <div>
         <div className="container">
           <div className="row" id="buttons">
-            <button className="btn-outline-dark btn-sm" onClick={() => this.props.deleteItem(this.props.list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
-            <button className="btn-outline-dark btn-sm" onClick={this.props.hideVisible}><FontAwesomeIcon icon={faTimes} /></button>
+            <div className="button">
+              <button className="btn-outline-dark btn-sm" onClick={() => this.props.deleteItem(this.props.list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
+            </div>
+            <div className="button">
+              <button className="btn-outline-dark btn-sm" onClick={this.props.hideVisible}><FontAwesomeIcon icon={faTimes} /></button>
+            </div>
           </div>
         </div>
         <div className="editForm">

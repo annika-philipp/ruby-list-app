@@ -34,8 +34,12 @@ class List extends Component {
                   <h4>{list.title}</h4>
                 </div>
                 <div className="col-4" id="buttons">
-                  <button className="btn-outline-dark btn-sm" onClick={() => this.props.deleteItem(list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
-                  <button className="btn-outline-dark btn-sm" onClick={this.toggleEdit}><FontAwesomeIcon icon={faEdit} /></button>
+                  <div className="button">
+                    <button className="btn-outline-dark btn-sm" onClick={() => this.props.deleteItem(list.id)}><FontAwesomeIcon icon={faTrashAlt} /></button>
+                  </div>
+                  <div className="button">
+                    <button className="btn-outline-dark btn-sm" onClick={this.toggleEdit}><FontAwesomeIcon icon={faEdit} /></button>
+                  </div>
                 </div>
               </div>
             </div>

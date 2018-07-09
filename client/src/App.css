@@ -21,7 +21,11 @@
 #buttons {
   display: flex;
   flex-direction: row;
-  flex-flow: row-reverse
+  flex-flow: row-reverse;
+}
+
+.button {
+  margin-left: 5px
 }
 
 /* need to add mediaquery for header */
