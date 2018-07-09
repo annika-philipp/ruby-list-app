@@ -82,7 +82,7 @@ class App extends Component {
       <div>
         
         <div className="jumbotron" id="header">
-          <h1>Lists Items Galore!</h1>
+          <h1>Lists Items!</h1>
         </div>
 
         <div className="container">
